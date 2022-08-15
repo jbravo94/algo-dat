@@ -1,3 +1,3 @@
 # Algorithms and Datastructures
 
-This repos contains solutions for https://www.freecodecamp.org/learn/coding-interview-prep.
+This repo contains solutions for https://www.freecodecamp.org/learn/coding-interview-prep.
