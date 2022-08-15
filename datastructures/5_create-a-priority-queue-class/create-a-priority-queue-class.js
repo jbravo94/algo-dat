@@ -20,3 +20,78 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+function PriorityQueue () {
+  this.collection = [];
+  this.printCollection = function() {
+    console.log(this.collection);
+  };
+  // Only change code below this line
+
+  this.enqueue = function(element) {
+    const priority = element[1];
+
+    const newArray = new Array(this.collection.length + 1);
+
+    if (this.collection.length === 0) {
+      newArray[0] = element;
+      this.collection = newArray;
+      return;
+    }
+
+    let elementInserted = false;
+
+    if (priority >= this.collection[0][1]) {
+      newArray[0] = element;
+      elementInserted = true;
+    }
+
+    for(let i = 0; i < this.collection.length; i++) {
+      if (elementInserted) {
+        newArray[i + 1] = this.collection[i];
+      } else {
+
+        if (priority === this.collection[i][1]) {
+          newArray[i] = element;
+          newArray[i + 1] = this.collection[i];
+          elementInserted = true;
+        } else {
+            newArray[i] = this.collection[i];
+        }
+      } 
+    }
+
+    if (!elementInserted) {
+      newArray[newArray.length - 1] = element;
+    }
+
+    this.collection = newArray;
+  };
+
+  this.dequeue = function() {
+    const newArray = new Array(this.collection.length - 1);
+
+    for(let i = 0; i < newArray.length; i++) {
+      newArray[i] = this.collection[i];
+    }
+
+    const lastElement = this.collection[this.collection.length - 1];
+
+    this.collection = newArray;
+
+    return lastElement[0];
+  };
+
+  this.size = function() {
+    return this.collection.length;
+  };
+
+  this.front = function() {
+    return this.collection[this.collection.length - 1][0];
+  };
+
+  this.isEmpty = function() {
+    return this.collection.length === 0;
+  };
+
+  // Only change code above this line
+}
