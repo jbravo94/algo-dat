@@ -37,8 +37,12 @@ var HashTable = function() {
         break;
       }
     }
-    
-    this.collection[hash(key)] = bucket;
+
+    if (bucket.length === 0 ) {
+      delete this.collection[hash(key)];
+    } else {
+      this.collection[hash(key)] = bucket;
+    }
   };
 
   this.lookup = function(key) {
